@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metadata & Classification - LCMS</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
+    <link href="../assets/css-user/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="bi bi-book-half me-2"></i>LCMS
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../user/dashboard.html">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../user/my-document.html">
+                            <i class="bi bi-folder me-1"></i>My Documents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../user/export.html">
+                            <i class="bi bi-download me-1"></i>Export
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>Teacher
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container-fluid py-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Metadata & Classification</li>
+            </ol>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="bi bi-tags me-2"></i>Metadata & Classification
+            </h1>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary" onclick="loadMetadataTemplate()">
+                    <i class="bi bi-file-earmark-text me-1"></i>Load Template
+                </button>
+                <button class="btn btn-primary" onclick="saveMetadata()">
+                    <i class="bi bi-check-circle me-1"></i>Save Metadata
+                </button>
+            </div>
+        </div>
+
+        <!-- Alert Container -->
+        <div id="alert-container"></div>
+
+        <div class="row">
+            <!-- Metadata Form -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-pencil-square me-2"></i>Document Metadata
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="metadataForm">
+                            <!-- Basic Information -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-info-circle me-2"></i>Basic Information
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label for="title" class="form-label">Title *</label>
+                                        <input type="text" class="form-control" id="title" name="title" required placeholder="Enter document title">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="documentType" class="form-label">Document Type</label>
+                                        <select class="form-select" id="documentType" name="documentType">
+                                            <option value="">Select type</option>
+                                            <option value="lecture">Lecture Notes</option>
+                                            <option value="assignment">Assignment</option>
+                                            <option value="exam">Exam</option>
+                                            <option value="project">Project</option>
+                                            <option value="reference">Reference Material</option>
+                                            <option value="lab">Lab Manual</option>
+                                            <option value="tutorial">Tutorial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description *</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3" required placeholder="Enter document description"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Course Classification -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-book me-2"></i>Course Classification
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="course" class="form-label">Course *</label>
+                                        <select class="form-select" id="course" name="course" required>
+                                            <option value="">Select course</option>
+                                            <option value="cs101">Computer Science 101 - Introduction to Programming</option>
+                                            <option value="se301">Software Engineering 301 - Advanced Concepts</option>
+                                            <option value="db201">Database Design 201 - Relational Databases</option>
+                                            <option value="wd401">Web Development 401 - Full Stack Development</option>
+                                            <option value="ai501">Artificial Intelligence 501 - Machine Learning</option>
+                                            <option value="cs201">Data Structures and Algorithms</option>
+                                            <option value="net301">Computer Networks 301</option>
+                                            <option value="os401">Operating Systems 401</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <select class="form-select" id="category" name="category">
+                                            <option value="">Select category</option>
+                                            <option value="theory">Theory</option>
+                                            <option value="practical">Practical</option>
+                                            <option value="assessment">Assessment</option>
+                                            <option value="project">Project</option>
+                                            <option value="lab">Lab Work</option>
+                                            <option value="tutorial">Tutorial</option>
+                                            <option value="reference">Reference</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="semester" class="form-label">Semester</label>
+                                        <select class="form-select" id="semester" name="semester">
+                                            <option value="">Select semester</option>
+                                            <option value="fall2024">Fall 2024</option>
+                                            <option value="spring2024">Spring 2024</option>
+                                            <option value="summer2024">Summer 2024</option>
+                                            <option value="fall2023">Fall 2023</option>
+                                            <option value="spring2023">Spring 2023</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="level" class="form-label">Academic Level</label>
+                                        <select class="form-select" id="level" name="level">
+                                            <option value="">Select level</option>
+                                            <option value="undergraduate">Undergraduate</option>
+                                            <option value="graduate">Graduate</option>
+                                            <option value="phd">PhD</option>
+                                            <option value="certificate">Certificate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tags and Keywords -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-tags me-2"></i>Tags and Keywords
+                                </h6>
+                                <div class="mb-3">
+                                    <label for="tags" class="form-label">Tags</label>
+                                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter tags separated by commas">
+                                    <div class="form-text">Example: programming, algorithms, data-structures, java</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keywords" class="form-label">Keywords</label>
+                                    <textarea class="form-control" id="keywords" name="keywords" rows="2" placeholder="Enter keywords for search optimization"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Suggested Tags</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('programming')">programming</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('algorithms')">algorithms</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('data-structures')">data-structures</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('java')">java</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('python')">python</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('database')">database</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('web-development')">web-development</span>
+                                        <span class="badge bg-light text-dark border cursor-pointer" onclick="addTag('software-engineering')">software-engineering</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Metadata -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-gear me-2"></i>Additional Metadata
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="author" class="form-label">Author</label>
+                                        <input type="text" class="form-control" id="author" name="author" placeholder="Document author">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="instructor" class="form-label">Instructor</label>
+                                        <input type="text" class="form-control" id="instructor" name="instructor" placeholder="Course instructor">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="dateCreated" class="form-label">Date Created</label>
+                                        <input type="date" class="form-control" id="dateCreated" name="dateCreated">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastModified" class="form-label">Last Modified</label>
+                                        <input type="date" class="form-control" id="lastModified" name="lastModified">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="version" class="form-label">Version</label>
+                                        <input type="text" class="form-control" id="version" name="version" placeholder="e.g., 1.0, 2.1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="language" class="form-label">Language</label>
+                                        <select class="form-select" id="language" name="language">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="zh">Chinese</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Learning Objectives -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-bullseye me-2"></i>Learning Objectives
+                                </h6>
+                                <div class="mb-3">
+                                    <label for="learningObjectives" class="form-label">Learning Objectives</label>
+                                    <textarea class="form-control" id="learningObjectives" name="learningObjectives" rows="4" placeholder="Describe what students will learn from this document"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="prerequisites" class="form-label">Prerequisites</label>
+                                    <textarea class="form-control" id="prerequisites" name="prerequisites" rows="2" placeholder="List any prerequisites for understanding this content"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Technical Information -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-cpu me-2"></i>Technical Information
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fileFormat" class="form-label">File Format</label>
+                                        <select class="form-select" id="fileFormat" name="fileFormat">
+                                            <option value="">Select format</option>
+                                            <option value="pdf">PDF</option>
+                                            <option value="docx">Word Document</option>
+                                            <option value="pptx">PowerPoint</option>
+                                            <option value="xlsx">Excel</option>
+                                            <option value="html">HTML</option>
+                                            <option value="txt">Text</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fileSize" class="form-label">File Size</label>
+                                        <input type="text" class="form-control" id="fileSize" name="fileSize" placeholder="e.g., 2.3 MB" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="duration" class="form-label">Estimated Duration</label>
+                                        <input type="text" class="form-control" id="duration" name="duration" placeholder="e.g., 45 minutes, 2 hours">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="difficulty" class="form-label">Difficulty Level</label>
+                                        <select class="form-select" id="difficulty" name="difficulty">
+                                            <option value="">Select difficulty</option>
+                                            <option value="beginner">Beginner</option>
+                                            <option value="intermediate">Intermediate</option>
+                                            <option value="advanced">Advanced</option>
+                                            <option value="expert">Expert</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Access Control -->
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-3">
+                                    <i class="bi bi-shield-lock me-2"></i>Access Control
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="visibility" class="form-label">Visibility</label>
+                                        <select class="form-select" id="visibility" name="visibility">
+                                            <option value="public">Public</option>
+                                            <option value="private">Private</option>
+                                            <option value="course-only">Course Only</option>
+                                            <option value="instructor-only">Instructor Only</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="license" class="form-label">License</label>
+                                        <select class="form-select" id="license" name="license">
+                                            <option value="all-rights-reserved">All Rights Reserved</option>
+                                            <option value="creative-commons">Creative Commons</option>
+                                            <option value="open-source">Open Source</option>
+                                            <option value="educational-use">Educational Use Only</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-primary" onclick="saveMetadata()">
+                                    <i class="bi bi-check-circle me-1"></i>Save Metadata
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="resetForm()">
+                                    <i class="bi bi-arrow-clockwise me-1"></i>Reset
+                                </button>
+                                <button type="button" class="btn btn-outline-info" onclick="previewMetadata()">
+                                    <i class="bi bi-eye me-1"></i>Preview
+                                </button>
+                                <button type="button" class="btn btn-outline-success" onclick="validateMetadata()">
+                                    <i class="bi bi-check-square me-1"></i>Validate
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metadata Templates & Help -->
+            <div class="col-lg-4">
+                <!-- Quick Templates -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-file-earmark-text me-2"></i>Quick Templates
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary" onclick="loadTemplate('lecture')">
+                                <i class="bi bi-file-text me-2"></i>Lecture Notes
+                            </button>
+                            <button class="btn btn-outline-success" onclick="loadTemplate('assignment')">
+                                <i class="bi bi-file-earmark-check me-2"></i>Assignment
+                            </button>
+                            <button class="btn btn-outline-warning" onclick="loadTemplate('exam')">
+                                <i class="bi bi-file-earmark-medical me-2"></i>Exam
+                            </button>
+                            <button class="btn btn-outline-info" onclick="loadTemplate('project')">
+                                <i class="bi bi-file-earmark-code me-2"></i>Project
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="loadTemplate('reference')">
+                                <i class="bi bi-file-earmark-book me-2"></i>Reference
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metadata Statistics -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-graph-up me-2"></i>Metadata Statistics
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-6 mb-3">
+                                <div class="border-end">
+                                    <div class="fw-bold text-primary">156</div>
+                                    <small class="text-muted">Total Documents</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="fw-bold text-success">142</div>
+                                <small class="text-muted">With Metadata</small>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="border-end">
+                                    <div class="fw-bold text-warning">14</div>
+                                    <small class="text-muted">Missing Metadata</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="fw-bold text-info">91%</div>
+                                <small class="text-muted">Completion Rate</small>
+                            </div>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 91%"></div>
+                        </div>
+                        <small class="text-muted">Metadata completion rate</small>
+                    </div>
+                </div>
+
+                <!-- Help & Guidelines -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-question-circle me-2"></i>Help & Guidelines
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="helpAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#help1">
+                                        Required Fields
+                                    </button>
+                                </h2>
+                                <div id="help1" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                                    <div class="accordion-body">
+                                        <small>Title, Description, and Course are required fields for proper document classification and searchability.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#help2">
+                                        Tag Guidelines
+                                    </button>
+                                </h2>
+                                <div id="help2" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                                    <div class="accordion-body">
+                                        <small>Use descriptive tags separated by commas. Include subject matter, difficulty level, and key concepts.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#help3">
+                                        Learning Objectives
+                                    </button>
+                                </h2>
+                                <div id="help3" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                                    <div class="accordion-body">
+                                        <small>Clearly state what students should be able to do after studying this material. Use action verbs like "understand", "analyze", "create".</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Metadata -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-clock-history me-2"></i>Recent Metadata
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item px-0 py-2">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="fw-bold">Introduction to Web Development.pdf</div>
+                                        <small class="text-muted">CS 101 • Lecture Notes</small>
+                                    </div>
+                                    <span class="badge bg-success">Complete</span>
+                                </div>
+                            </div>
+                            <div class="list-group-item px-0 py-2">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="fw-bold">Database Design Lecture.pptx</div>
+                                        <small class="text-muted">DB 201 • Presentation</small>
+                                    </div>
+                                    <span class="badge bg-success">Complete</span>
+                                </div>
+                            </div>
+                            <div class="list-group-item px-0 py-2">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="fw-bold">Software Engineering Assignment.docx</div>
+                                        <small class="text-muted">SE 301 • Assignment</small>
+                                    </div>
+                                    <span class="badge bg-warning">Incomplete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <a href="../user/my-document.html" class="btn btn-outline-primary btn-sm w-100">
+                                <i class="bi bi-arrow-right me-1"></i>View All Documents
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Metadata Preview Modal -->
+    <div class="modal fade" id="metadataPreviewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-eye me-2"></i>Metadata Preview
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="metadataPreviewContent">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveMetadata()">
+                        <i class="bi bi-check me-1"></i>Save Metadata
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-book-half me-2"></i>LCMS
+                    </h5>
+                    <p class="">
+                        Learning Content Management System for educators to manage, organize, and export educational content.
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-decoration-none">Home</a></li>
+                        <li><a href="user/dashboard.html" class="text-decoration-none">Dashboard</a></li>
+                        <li><a href="user/my-document.html" class="text-decoration-none">My Documents</a></li>
+                        <li><a href="user/export.html" class="text-decoration-none">Export</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-decoration-none">Documentation</a></li>
+                        <li><a href="#" class="text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">
+                        &copy; 2024 LCMS. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class=""><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js-user/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js-user/script.js"></script>
+</body>
+</html>
