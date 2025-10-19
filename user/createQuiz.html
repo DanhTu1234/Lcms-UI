@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
+    <link href="../assets/css-user/style.css" rel="stylesheet">
+    <style>
+      .btn-save {
+        background-color: #f0ad4e;
+        color: #212529;
+        border: none;
+      }
+      .btn-save:hover {
+        background-color: #e09a2d;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Tạo mới Quiz</h4>
+
+              <form>
+                <div class="mb-3">
+                  <label for="quizName" class="form-label">Tên quiz</label>
+                  <input type="text" class="form-control" id="quizName" placeholder="Enter quiz name">
+                </div>
+
+                <div class="mb-3">
+                  <label for="quizDescription" class="form-label">Mô tả</label>
+                  <textarea class="form-control" id="quizDescription" rows="4" placeholder="Enter description"></textarea>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="quizDuration" class="form-label">Thời gian(phút)</label>
+                    <input type="number" class="form-control" id="quizDuration" min="1" placeholder="e.g. 30">
+                  </div>
+
+                  <!-- <div class="col-12 col-md-6">
+                    <label for="quizType" class="form-label">Quiz type...</label>
+                    <select class="form-select" id="quizType">
+                      <option selected disabled>Choose type</option>
+                      <option>Multiple Choice</option>
+                      <option>True / False</option>
+                      <option>Short Answer</option>
+                      <option>Matching</option>
+                    </select>
+                  </div> -->
+                </div>
+              </form>
+
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label class="form-label fw-medium mb-0">Add Questions:</label>
+                    <button class="btn btn-outline-primary btn-sm" id="addQuestionBtn">+ Thêm câu hỏi</button>
+                </div>
+
+                <div id="questions-container">
+                    <!-- Câu hỏi mẫu -->
+                    <div class="question-box">
+                        <button class="btn btn-sm btn-outline-danger remove-question">× Xóa câu hỏi</button>
+                        <input type="text" class="form-control mb-2 question-text" placeholder="Nhập nội dung câu hỏi">
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="file" class="form-control w-50 question-image">
+                            <img src="" alt="" class="question-img d-none preview-img" />
+                        </div>
+
+                        <div class="answers-container">
+                            <div class="answer-item d-flex align-items-center gap-2 mb-2">
+                                <input type="checkbox" class="form-check-input me-2" title="Đáp án đúng?">
+                                <input type="text" class="form-control" placeholder="Answer">
+                                <button class="btn btn-outline-primary btn-sm add-answer">+</button>
+                                <button class="btn btn-outline-danger btn-sm remove-answer">-</button>
+                            </div>
+                            <div class="answer-item d-flex align-items-center gap-2 mb-2">
+                                <input type="checkbox" class="form-check-input me-2" title="Đáp án đúng?">
+                                <input type="text" class="form-control" placeholder="Answer">
+                                <button class="btn btn-outline-primary btn-sm add-answer">+</button>
+                                <button class="btn btn-outline-danger btn-sm remove-answer">-</button>
+                            </div>
+                            <div class="answer-item d-flex align-items-center gap-2 mb-2">
+                                <input type="checkbox" class="form-check-input me-2" title="Đáp án đúng?">
+                                <input type="text" class="form-control" placeholder="Answer">
+                                <button class="btn btn-outline-primary btn-sm add-answer">+</button>
+                                <button class="btn btn-outline-danger btn-sm remove-answer">-</button>
+                            </div>
+                            <div class="answer-item d-flex align-items-center gap-2 mb-2">
+                                <input type="checkbox" class="form-check-input me-2" title="Đáp án đúng?">
+                                <input type="text" class="form-control" placeholder="Answer">
+                                <button class="btn btn-outline-primary btn-sm add-answer">+</button>
+                                <button class="btn btn-outline-danger btn-sm remove-answer">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <button type="button" id="saveBtn" class="btn btn-save">Save</button>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js-user/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js-user/alert.js"></script>
+    <script src="../assets/js-user/include.js"></script>
+    <script src="../assets/js-user/createQuiz.js"></script>
+  </body>
+</html>
