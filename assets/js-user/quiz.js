@@ -55,7 +55,7 @@ async function loadQuiz() {
             document.querySelectorAll('.start-quiz-btn').forEach(btn => {
                 btn.addEventListener('click', e => {
                     const quizId = e.currentTarget.getAttribute('data-quiz-id');
-                    window.location.href = `quizDetail.html?id=${quizId}`;
+                    window.location.href = `startQuiz.html?id=${quizId}`;
                 });
             });
         });

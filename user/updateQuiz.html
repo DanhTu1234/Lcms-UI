@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
+    <link href="../assets/css-user/style.css" rel="stylesheet">
+    <style>
+      .container{
+        flex: 1;
+      }
+      .btn-update {
+        background-color: #5cb85c;
+        color: #fff;
+        border: none;
+      }
+      .btn-update:hover {
+        background-color: #449d44;
+      }
+      .question-box {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #fafafa;
+        position: relative;
+      }
+      .remove-question {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      .question-type{
+        margin-top: 35px;
+      }
+
+      .image-upload-box {
+        transition: background-color 0.2s ease;
+      }
+      .image-upload-box:hover {
+        background-color: #f8f9fa;
+      }
+      .preview-img {
+        max-width: 100%;
+        object-fit: contain;
+        border: 1px solid #dee2e6;
+        padding: 4px;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Cập nhật Quiz</h4>
+
+              <div id="alert-container"></div>
+                <div class="mb-3">
+                  <label class="form-label">Tên quiz</label>
+                  <input type="text" class="form-control" id="quizName" placeholder="Enter quiz name">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Mô tả</label>
+                  <textarea class="form-control" id="quizDescription" rows="3" placeholder="Enter description"></textarea>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">Thời gian (phút)</label>
+                    <input type="number" class="form-control" id="quizDuration" min="1" placeholder="e.g. 30">
+                  </div>
+                </div>
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label fw-medium mb-0">Danh sách câu hỏi:</label>
+                <button class="btn btn-outline-primary btn-sm" id="addQuestionBtn">+ Thêm câu hỏi</button>
+              </div>
+
+              <div id="questions-container">
+                <!-- Các câu hỏi sẽ được load từ dữ liệu quiz -->
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button id="updateBtn" class="btn btn-update">Cập nhật</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js-user/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js-user/alert.js"></script>
+    <script src="../assets/js-user/include.js"></script>
+    <script src="../assets/js-user/updateQuiz.js"></script>
+  </body>
+</html>

@@ -8,6 +8,11 @@
     <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
     <link href="../assets/css-user/style.css" rel="stylesheet">
+    <style>
+      .container{
+        flex: 1;
+      }
+    </style>
 </head>
 <body>
     <div id="header"></div>
@@ -29,180 +34,7 @@
 
             <!-- Quiz Grid -->
             <div class="quiz-grid row" id="quizGrid">
-                <!-- JavaScript Fundamentals Quiz -->
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <div class="card quiz-card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold text-primary mb-0">JavaScript Fundamentals</h5>
-                                <span class="quiz-duration">
-                                    <i class="bi bi-clock me-1"></i>30m
-                                </span>
-                            </div>
-                            
-                            <p class="card-text text-muted flex-grow-1">
-                                Test your knowledge of JavaScript basics including variables, functions, objects, and ES6 features. Perfect for beginners and intermediate developers.
-                            </p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-question-circle me-1"></i>
-                                        20 questions
-                                    </small>
-                                    <small class="text-muted">
-                                        <i class="bi bi-person me-1"></i>
-                                        Beginner
-                                    </small>
-                                </div>
-                                
-                                <button class="btn start-quiz-btn text-white w-100" onclick="startQuiz(1)">
-                                    <i class="bi bi-play-circle me-2"></i>Start Quiz
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- React.js Advanced Concepts Quiz -->
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <div class="card quiz-card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold text-primary mb-0">React.js Advanced Concepts</h5>
-                                <span class="quiz-duration">
-                                    <i class="bi bi-clock me-1"></i>45m
-                                </span>
-                            </div>
-                            
-                            <p class="card-text text-muted flex-grow-1">
-                                Advanced React concepts including hooks, context API, performance optimization, and state management patterns.
-                            </p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-question-circle me-1"></i>
-                                        25 questions
-                                    </small>
-                                    <small class="text-muted">
-                                        <i class="bi bi-person me-1"></i>
-                                        Advanced
-                                    </small>
-                                </div>
-                                
-                                <button class="btn start-quiz-btn text-white w-100" onclick="startQuiz(2)">
-                                    <i class="bi bi-play-circle me-2"></i>Start Quiz
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Database Design & SQL Quiz -->
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <div class="card quiz-card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold text-primary mb-0">Database Design & SQL</h5>
-                                <span class="quiz-duration">
-                                    <i class="bi bi-clock me-1"></i>1h
-                                </span>
-                            </div>
-                            
-                            <p class="card-text text-muted flex-grow-1">
-                                Comprehensive quiz covering database normalization, SQL queries, indexing, and database optimization techniques.
-                            </p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-question-circle me-1"></i>
-                                        30 questions
-                                    </small>
-                                    <small class="text-muted">
-                                        <i class="bi bi-person me-1"></i>
-                                        Intermediate
-                                    </small>
-                                </div>
-                                
-                                <button class="btn start-quiz-btn text-white w-100" onclick="startQuiz(3)">
-                                    <i class="bi bi-play-circle me-2"></i>Start Quiz
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Security Best Practices Quiz -->
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <div class="card quiz-card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold text-primary mb-0">Web Security Best Practices</h5>
-                                <span class="quiz-duration">
-                                    <i class="bi bi-clock me-1"></i>40m
-                                </span>
-                            </div>
-                            
-                            <p class="card-text text-muted flex-grow-1">
-                                Learn about common web vulnerabilities, authentication, authorization, and security best practices for web applications.
-                            </p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-question-circle me-1"></i>
-                                        22 questions
-                                    </small>
-                                    <small class="text-muted">
-                                        <i class="bi bi-person me-1"></i>
-                                        Advanced
-                                    </small>
-                                </div>
-                                
-                                <button class="btn start-quiz-btn text-white w-100" onclick="startQuiz(4)">
-                                    <i class="bi bi-play-circle me-2"></i>Start Quiz
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CSS & Responsive Design Quiz -->
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <div class="card quiz-card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold text-primary mb-0">CSS & Responsive Design</h5>
-                                <span class="quiz-duration">
-                                    <i class="bi bi-clock me-1"></i>35m
-                                </span>
-                            </div>
-                            
-                            <p class="card-text text-muted flex-grow-1">
-                                Master CSS Grid, Flexbox, responsive design principles, and modern CSS techniques for creating beautiful layouts.
-                            </p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <small class="text-muted">
-                                        <i class="bi bi-question-circle me-1"></i>
-                                        18 questions
-                                    </small>
-                                    <small class="text-muted">
-                                        <i class="bi bi-person me-1"></i>
-                                        Intermediate
-                                    </small>
-                                </div>
-                                
-                                <button class="btn start-quiz-btn text-white w-100" onclick="startQuiz(5)">
-                                    <i class="bi bi-play-circle me-2"></i>Start Quiz
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 

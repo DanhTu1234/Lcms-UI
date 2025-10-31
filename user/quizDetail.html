@@ -1,87 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz System - Available Quizzes</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Quiz</title>
     <!-- Bootstrap 5 CSS -->
     <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
-    <link href="../assets/css-user/style.css" rel="stylesheet">
-</head>
-<body>
+    <style>
+      .container{
+        flex: 1;
+      }
+      .question-box {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+        background: #fafafa;
+      }
+      .question-img {
+        max-width: 150px;
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+      .answer-item {
+        padding: 6px 12px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+      }
+      .answer-item.correct {
+        background-color: #d4edda;
+        border: 1px solid #28a745;
+      }
+      .answer-item.incorrect {
+        background-color: #f8d7da;
+        border: 1px solid #dc3545;
+      }
+    </style>
+  </head>
+  <body>
     <div id="header"></div>
-    
-    <div class="quiz-container row">
-        <!-- Alert Container -->
-        <div id="alert-container"></div>
-        <!-- LEFT CONTENT -->
-        <div class="col-md-8 content">
-            <h4 class="mb-3">Quiz 15: Test Nhanh Về Lập Trình Java</h4>
 
-            <img src="https://i.pinimg.com/736x/61/62/2e/61622ec8899cffaa687a8342a84ea525.jpg" class="question-image" alt="Question image">
+    <main class="container py-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 id="quizTitle" class="mb-3"></h3>
+          <p id="quizDescription" class="text-muted"></p>
+          <p><strong>Thời gian làm bài:</strong> <span id="quizDuration"></span> phút</p>
 
-            <h5 class="mt-3">Câu hỏi 7: Tên của người đàn ông này?</h5>
+          <hr>
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" id="opt1">
-                <label class="form-check-label" for="opt1">aaaaa</label>
-            </div>
+          <div id="questions-container"></div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" id="opt2">
-                <label class="form-check-label" for="opt2">aaaaa</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" id="opt3" checked>
-                <label class="form-check-label" for="opt3">aaaaaa <span class="text-success fw-bold">✔</span></label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" id="opt4">
-                <label class="form-check-label" for="opt4">aaaaaa</label>
-            </div>
-
-            <div class="d-flex justify-content-between mt-4">
-                <button class="btn btn-secondary btn-nav">Prev</button>
-                <div>
-                    <button class="btn btn-primary btn-nav">Next</button>
-                    <button class="btn btn-warning btn-nav text-white">Finish</button>
-                </div>
-            </div>
+          <div class="mt-4">
+            <a href="/user/manageQuiz.html" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-left"></i> Quay lại danh sách
+            </a>
+          </div>
         </div>
-
-        <!-- RIGHT SIDEBAR -->
-        <div class="col-md-4 sidebar text-center">
-            <div class="timer mb-3">02:30</div>
-
-            <div class="d-flex flex-wrap justify-content-center">
-                <button class="circle-btn active">1</button>
-                <button class="circle-btn">2</button>
-                <button class="circle-btn">3</button>
-                <button class="circle-btn">4</button>
-                <button class="circle-btn">5</button>
-                <button class="circle-btn answered">6</button>
-                <button class="circle-btn answered">7</button>
-            </div>
-
-            <div class="mt-4">
-                <small class="text-muted">Câu đã làm: <span class="text-success fw-bold">2/7</span></small>
-            </div>
-        </div>
-    </div>
+      </div>
+    </main>
 
     <div id="footer"></div>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Custom JavaScript -->
-    <script src="../assets/js-user/alert.js"></script>
+    <script src="../assets/js-user/bootstrap.bundle.min.js"></script>
     <script src="../assets/js-user/include.js"></script>
-    <script src="../assets/js-user/script.js"></script>
     <script src="../assets/js-user/quizDetail.js"></script>
-</body>
+  </body>
 </html>

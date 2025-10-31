@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../assets/css-user/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> 
+    <link href="../assets/css-user/style.css" rel="stylesheet">
+    <style>
+      .container{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>Danh sách Quiz</h3>
+            <a href="createQuiz.html" class="btn btn-primary">+ Tạo Quiz mới</a>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Stt</th>
+                    <th>Tên Quiz</th>
+                    <th>Mô tả</th>
+                    <th>Thời gian(phút)</th>
+                    <th>Ngày tạo</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="quiz-table-body"></tbody>
+        </table>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js-user/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js-user/alert.js"></script>
+    <script src="../assets/js-user/include.js"></script>
+    <script src="../assets/js-user/manageQuiz.js"></script>
+  </body>
+</html>
