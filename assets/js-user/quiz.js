@@ -2,7 +2,7 @@ const quizGrid = document.getElementById("quizGrid");
 
 async function loadQuiz() {
     try{
-        const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz`);
+        const response = await axios.get(`http://localhost:8444/api/quizz`);
         const quizzes = response.data;
         quizGrid.innerHTML = ''; //Xóa nội dung cũ
 
@@ -51,20 +51,20 @@ async function loadQuiz() {
                 </div>
             `;
             quizGrid.insertAdjacentHTML('beforeend', quizHtml);
-
+            });
             document.querySelectorAll('.start-quiz-btn').forEach(btn => {
                 btn.addEventListener('click', e => {
                     const quizId = e.currentTarget.getAttribute('data-quiz-id');
                     window.location.href = `startQuiz.html?id=${quizId}`;
                 });
             });
-        });
+        
     }catch(error){
         console.error("Lỗi khi tải danh sách quiz:", error);
         showAlert("Không thể tải danh sách quiz!", "danger");
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("kc-ready", () => {
     loadQuiz();
 });

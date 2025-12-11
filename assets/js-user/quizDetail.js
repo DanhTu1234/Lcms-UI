@@ -1,6 +1,6 @@
 const quizId = new URLSearchParams(window.location.search).get("id");
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("kc-ready", () => {
   loadQuizDetail();
 });
 
@@ -11,7 +11,7 @@ async function loadQuizDetail() {
   }
 
   try {
-    const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz/${quizId}`);
+    const response = await axios.get(`http://localhost:8444/api/quizz/${quizId}`);
     const quiz = response.data;
 
     renderQuizDetail(quiz);

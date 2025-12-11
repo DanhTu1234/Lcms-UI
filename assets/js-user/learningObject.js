@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("kc-ready", function () {
     const folderTree  = document.querySelector(".folder-tree");
     const folderNameInput = document.getElementById("folderName");
     const createFolderBtn  = document.getElementById("createFolderBtn");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function loadFolders() {
       try {
-        const res = await axios.get("http://localhost:8080/SpringMVC-study/api/folders");
+        const res = await axios.get("http://localhost:8444/api/folders");
         renderFolderTree(res.data);
       } catch (error) {
         showAlert("Không thể tải thư mục!", "danger");
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const parentId = selectedFolder && selectedFolder.dataset.id !== "root" ? Number(selectedFolder.dataset.id) : null;
 
       try {
-        await axios.post("http://localhost:8080/SpringMVC-study/api/folders", {
+        await axios.post("http://localhost:8444/api/folders", {
           name: name,
           parentId: parentId,
         });
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </td></tr>`;
 
       try {
-        const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/folders/learningObjects/${folderId}`);
+        const res = await axios.get(`http://localhost:8444/api/folders/learningObjects/${folderId}`);
         renderLearningObjects(res.data);
       } catch (error) {
         console.error(error);
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
       container.innerHTML = `<div class="text-center text-muted">Đang tải danh sách phiên bản...</div>`;
 
       try {
-        const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/learningObjects/${loId}`);
+        const res = await axios.get(`http://localhost:8444/api/learningObjects/${loId}`);
         renderVersions(loId, res.data);
       } catch (error) {
         console.error("Lỗi khi tải phiên bản:", error);
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         const res = await axios.post(
-          "http://localhost:8080/SpringMVC-study/api/learning-objects/upload",
+          "http://localhost:8444/api/learning-objects/upload",
           formData,
           {
             headers: {
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         const res = await axios.post(
-          `http://localhost:8080/SpringMVC-study/api/learning-objects/uploadVersion/${loId}`,
+          `http://localhost:8444/api/learning-objects/uploadVersion/${loId}`,
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Hàm xem trước file
     async function previewFile(fileName) {
         try {
-            const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/learning-objects/preview/${fileName}`);
+            const res = await axios.get(`http://localhost:8444/api/learning-objects/preview/${fileName}`);
             const downloadUrl = res.data;
             window.open(downloadUrl, "_blank"); // mở link S3 tạm thời trong tab mới
         } catch (error) {
@@ -400,14 +400,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         try {
-            const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/learning-objects/download/${fileName}`);
+            const res = await axios.get(`http://localhost:8444/api/learning-objects/download/${fileName}`);
             window.location.href = res.data;
         } catch (error) {
             console.error(error);
             showAlert("Không thể tạo link tải file", "danger");
         }
     }
-
+    
     loadFolders();
 
 });

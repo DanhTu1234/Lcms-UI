@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("kc-ready", () => {
     initPage();
 });
 
@@ -186,7 +186,7 @@ async function saveQuiz(container) {
             const formData = new FormData();
             formData.append("file", file);
             try {
-                const res = await axios.post("http://localhost:8080/SpringMVC-study/api/quizz/upload", formData, {
+                const res = await axios.post("http://localhost:8444/api/quizz/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
 
@@ -207,7 +207,7 @@ async function saveQuiz(container) {
     };
 
     try {
-        await axios.post("http://localhost:8080/SpringMVC-study/api/quizz",
+        await axios.post("http://localhost:8444/api/quizz",
             quiz,
             { headers: { "Content-Type": "application/json" } }
         );      

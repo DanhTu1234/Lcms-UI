@@ -16,7 +16,7 @@ async function createAttempt() {
     startTime = new Date();
 
     const response = await axios.post(
-      "http://localhost:8080/SpringMVC-study/api/attemp/start",
+      "http://localhost:8444/api/attemp/start",
       { quizId: quizId }
     );
     attemptId = response.data.attemptId;
@@ -30,7 +30,7 @@ async function createAttempt() {
 // Hàm tải dữ liệu câu hỏi
 async function loadQuiz() {
   try {
-    const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz/${quizId}`);
+    const response = await axios.get(`http://localhost:8444/api/quizz/${quizId}`);
     quizData = response.data;
     //userAnswers = new Array(quizData.questions.length).fill(null);
     userAnswers = quizData.questions.map(q => (q.question_type === "multiple" ? [] : null));
@@ -220,7 +220,7 @@ async function finishQuiz() {
   try {
     // Gửi dữ liệu qua API submit
     const response = await axios.post(
-      "http://localhost:8080/SpringMVC-study/api/attemp/submit",
+      "http://localhost:8444/api/attemp/submit",
       payload
     );
 
@@ -255,7 +255,7 @@ function disableQuizUI() {
   if (typeof timerInterval !== "undefined") clearInterval(timerInterval);
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("kc-ready", async () => {
   await createAttempt();
   await loadQuiz();
 });

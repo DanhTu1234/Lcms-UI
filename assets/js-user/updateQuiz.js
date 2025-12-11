@@ -3,7 +3,7 @@ const addQuestionBtn = document.getElementById("addQuestionBtn");
 const container = document.getElementById("questions-container");
 const updateBtn = document.getElementById("updateBtn");
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("kc-ready", () => {
     loadQuizData(quizId);
     initPage();
 });
@@ -191,7 +191,7 @@ function handleAnswerEvents(e) {
 // Hàm tải dữ liệu quiz để hiển thị
 async function loadQuizData(quizId) {
   try {
-    const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz/${quizId}`);
+    const response = await axios.get(`http://localhost:8444/api/quizz/${quizId}`);
     const quiz = response.data;
 
     // Gán thông tin quiz vào form
@@ -238,7 +238,7 @@ async function updateQuiz(quizId) {
             const formData = new FormData();
             formData.append("file", file);
             try {
-                const res = await axios.post("http://localhost:8080/SpringMVC-study/api/quizz/upload", formData, {
+                const res = await axios.post("http://localhost:8444/api/quizz/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 // Gán media_url mới từ AWS
@@ -260,7 +260,7 @@ async function updateQuiz(quizId) {
     }
 
     try {
-        await axios.put(`http://localhost:8080/SpringMVC-study/api/quizz/${quizId}`,
+        await axios.put(`http://localhost:8444/api/quizz/${quizId}`,
             {
                 title,
                 description,

@@ -46,6 +46,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../assets/js-user/alert.js"></script>
     <script src="../assets/js-user/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/keycloak-js@25.0.6/dist/keycloak.min.js"></script>
+    <script src="../assets/js-user/keycloak.js"></script>
     <script>
         const questionArea = document.getElementById("question-area");
         const sidebarButtons = document.getElementById("sidebar-buttons");
@@ -59,7 +61,7 @@
 
         async function loadReview() {
             try {
-                const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz/review/${attemptId}`);
+                const res = await axios.get(`http://localhost:8444/api/quizz/review/${attemptId}`);
                 quizData = res.data;
 
                 totalCountEl.textContent = quizData.questions.length;
@@ -167,7 +169,7 @@
             });
             correctCountEl.textContent = correct;
         }
-        document.addEventListener("DOMContentLoaded", loadReview);
+        document.addEventListener("kc-ready", loadReview);
     </script>
 
 </body>

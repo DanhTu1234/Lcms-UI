@@ -33,7 +33,7 @@ function formatFileSize(bytes) {
 async function loadDocuments() {
 
     try {
-        const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/documents`);
+        const response = await axios.get(`http://localhost:8444/api/documents`);
         const documents = response.data;
 
         fileList.innerHTML = ''; //Xóa nội dung cũ
@@ -126,7 +126,7 @@ async function uploadFiles() {
     try {
         if(progressContainer) progressContainer.style.display = 'block'; // Hiển thị thanh tiến trình
 
-        await axios.post('http://localhost:8080/SpringMVC-study/api/documents', formData,{
+        await axios.post('http://localhost:8444/api/documents', formData,{
             onUploadProgress: progressEvent => {
                 const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                 if (progressContainer) {
@@ -156,7 +156,7 @@ async function uploadFiles() {
 //Hàm xem trước file
 async function previewFile(fileName) {
     try {
-        const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/documents/${fileName}/preview`);
+        const res = await axios.get(`http://localhost:8444/api/documents/${fileName}/preview`);
         const downloadUrl = res.data;
         window.open(downloadUrl, "_blank"); // mở link S3 tạm thời trong tab mới
     } catch (error) {
@@ -173,7 +173,7 @@ async function downloadFile(fileName) {
         return;
     }
     try {
-        const res = await axios.get(`http://localhost:8080/SpringMVC-study/api/documents/${fileName}/download`);
+        const res = await axios.get(`http://localhost:8444/api/documents/${fileName}/download`);
         window.location.href = res.data;
     } catch (error) {
         console.error("Lỗi khi tạo link tải:", error);
@@ -185,7 +185,7 @@ async function downloadFile(fileName) {
 async function deleteFile(id) {
     if (confirm(`Bạn có chắc muốn xóa tài liệu này không?`)) {
         try{
-            await axios.delete(`http://localhost:8080/SpringMVC-study/api/documents/${id}`);
+            await axios.delete(`http://localhost:8444/api/documents/${id}`);
             showAlert('Xóa tài liệu thành công', 'success');
             loadDocuments(); 
         }catch(error){

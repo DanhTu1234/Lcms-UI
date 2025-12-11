@@ -12,7 +12,7 @@ function formatDate(timestamp) {
 
 async function loadQuiz(){
     try {
-        const response = await axios.get(`http://localhost:8080/SpringMVC-study/api/quizz`);
+        const response = await axios.get(`http://localhost:8444/api/quizz`);
         const quizzes = response.data;
         quizGrid.innerHTML = '';
         if (quizzes.length == 0) {
@@ -50,7 +50,7 @@ async function deleteQuiz(id) {
     if (!confirm("Bạn có chắc chắn muốn xóa quiz này?")) return;
 
     try {
-        await axios.delete(`http://localhost:8080/SpringMVC-study/api/quizz/${id}`);
+        await axios.delete(`http://localhost:8444/api/quizz/${id}`);
         showAlert("Đã xóa quiz thành công!", "success");
         setTimeout(loadQuiz, 1000);
     } catch (error) {
@@ -59,6 +59,6 @@ async function deleteQuiz(id) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('kc-ready', () => {
     loadQuiz();
 });
